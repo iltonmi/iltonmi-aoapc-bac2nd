@@ -39,11 +39,10 @@ bool read_header(string& header) {
 int main(void) {
     string header;
     while(read_header(header)) {
-        cout << header << endl;
         int len = 0;
         string ans;
         while(len = read_len(), len) {
-            while(true) { 
+            while(true) {
                 string pat;
                 bool flag = false;
                 for(int i = 0; i < len; i++) {
