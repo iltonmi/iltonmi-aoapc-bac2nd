@@ -12,6 +12,7 @@ map<char, int> nums;
 string path, fpath;
 bool used[10];
 
+// 依然是编号的思想，很重要很重要
 int NO(char c) {
     if(nums.count(c)) return nums[c];
     names[nnode] = c;
@@ -57,6 +58,7 @@ void dfs(int x, int pre) {
         if(pre < ans) ans = pre, fpath = path;
         if(pre == ans && path < fpath) fpath = path;
     }
+    // 如果是等待再下一次递归再记录path，会导致不必要的递归
     for(int i = 0; path.size() < nnode && i < nnode; i++)
         dfs(i, pre);
     used[x] = false;
