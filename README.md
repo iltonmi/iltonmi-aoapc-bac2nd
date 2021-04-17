@@ -102,4 +102,17 @@
 - [习题6-7，Petri网模拟（Petri Net Simulation），uva804](https://github.com/iltonmi/iltonmi-aoapc-bac2nd/blob/master/ch6/uva804.cpp) 
 - [习题6-8，空间结构（Spatial Structures），uva806](https://github.com/iltonmi/iltonmi-aoapc-bac2nd/blob/master/ch6/uva806.cpp) 
 
-### 第七章 暴力求解法（未完待续。。。）
+### 第七章 暴力求解法
+
+- [例题7-1，uva725，Division](https://github.com/iltonmi/iltonmi-aoapc-bac2nd/blob/master/ch7/uva725.cpp)
+- [例题7-2，uva11059，Maximum Product](https://github.com/iltonmi/iltonmi-aoapc-bac2nd/blob/master/ch7/uva11059.cpp)
+- [例题7-3，uva10976，Fractions Again?!](https://github.com/iltonmi/iltonmi-aoapc-bac2nd/blob/master/ch7/uva10976.cpp)
+- [例题7-4，uva524，Prime Ring Problem](https://github.com/iltonmi/iltonmi-aoapc-bac2nd/blob/master/ch7/uva524.cpp)
+- [例题7-5，uva129，Krypton Factor](https://github.com/iltonmi/iltonmi-aoapc-bac2nd/blob/master/ch7/uva129.cpp)
+- [例题7-6，uva140，Bandwidth](https://github.com/iltonmi/iltonmi-aoapc-bac2nd/blob/master/ch7/uva140.cpp)
+- [例题7-7，uva1354，Mobile Computing](https://github.com/iltonmi/iltonmi-aoapc-bac2nd/blob/master/ch7/uva1354.cpp)
+- [例题7-8，uva10603，Fill](https://github.com/iltonmi/iltonmi-aoapc-bac2nd/blob/master/ch7/uva10603.cpp)
+- 例题7-9，uva1601，The Morning after Halloween
+    - [解答1](https://github.com/iltonmi/iltonmi-aoapc-bac2nd/blob/master/ch7/uva1601.cpp)
+    - [解答2](https://github.com/iltonmi/iltonmi-aoapc-bac2nd/blob/master/ch7/uva1601-b.cpp)
+- [例题7-10，uva11212，Editing a Book](https://github.com/iltonmi/iltonmi-aoapc-bac2nd/blob/master/ch7/uva11212.cpp)
