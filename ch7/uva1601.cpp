@@ -136,3 +136,7 @@ int main(void) {
 // while add edge, save the pos of ghost and the end point
 // if ghosts is less than 3, than add fake ghost, assign each an id and add it to the map
 // use bfs search to travase states
+
+// compare to Rujia Liu's solutions: a struct can be split to several arrays each represent a field
+// what i learn from this question: when necessary or state transitions are complicated,
+// we can build a implict graph, assign each state an id, transform state transition to graph traversal
