@@ -116,3 +116,15 @@
     - [解答1](https://github.com/iltonmi/iltonmi-aoapc-bac2nd/blob/master/ch7/uva1601.cpp)
     - [解答2](https://github.com/iltonmi/iltonmi-aoapc-bac2nd/blob/master/ch7/uva1601-b.cpp)
 - [例题7-10，uva11212，Editing a Book](https://github.com/iltonmi/iltonmi-aoapc-bac2nd/blob/master/ch7/uva11212.cpp)
+- [例题7-11，uva12325，Zombie's Treasure Chest](https://github.com/iltonmi/iltonmi-aoapc-bac2nd/blob/master/ch7/uva12325.cpp)
+- [例题7-12，uva1343，The Rotation Game](https://github.com/iltonmi/iltonmi-aoapc-bac2nd/blob/master/ch7/uva1343.cpp)
+- [例题7-13，UVA1374，Power Calculus](https://github.com/iltonmi/iltonmi-aoapc-bac2nd/blob/master/ch7/uva1374.cpp)
+- 例题7-14，uva1602，Lattice Animals，跳过。。。
+- 例题7-15，uva1603，Square Destroyer，跳过。。。
+- [习题7-1，uva208，Firetruck](https://github.com/iltonmi/iltonmi-aoapc-bac2nd/blob/master/ch7/uva208.cpp)
+- 习题7-2，uva225，Golygons
+    - [解答1](https://github.com/iltonmi/iltonmi-aoapc-bac2nd/blob/master/ch7/uva225.cpp)
+    - [解答2](https://github.com/iltonmi/iltonmi-aoapc-bac2nd/blob/master/ch7/uva225-b.cpp)
+    - [解答3](https://github.com/iltonmi/iltonmi-aoapc-bac2nd/blob/master/ch7/uva225-c.cpp)
+
+未完待续。。。
