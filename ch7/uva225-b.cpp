@@ -2,27 +2,27 @@
 #include <iostream>
 #include <unordered_map>
 #include <vector>
-#include <unordered_set>
 #include <cmath>
 
 using namespace std;
 
-typedef pair<int, int> pii;
-
 int dx[] = {0,1,0,-1}, dy[] = {1,0,-1,0};
-int sum[25];
+int sum[25], g[220][220];
 char dirs[] = {'n','e','s','w'};
 char path[20];
 unordered_map<int, vector<int>> xy;
 unordered_map<int, vector<int>> yx;
-auto phash = [](const pii& p){ return (size_t)(p.first * 31 + p.second); };
-unordered_set<pii, decltype(phash)> set(10, phash);
 // 根据问题规模，走20次，其实最多也只是21 * 20 / 2 = 210
 // 而要出发后往回走，意味着超过210 / 2 = 105就没有无法返回了
 // 又因为可以往四个方向走，所以数组的大小是210，由于210是个边界值，为了保险起见，直接用220会更保险
 // 所以完全可以用一个二维数组来保存点的状态，但要注意因为坐标可能是负数，所以还需要加一个偏移量
+// 改造之后，只需要450ms，比我在洛谷看到的两个解答都更快
 int n, k;
 int tot;
+
+bool invalid(int a, int b) {
+    return abs(a) > 110 || abs(b) > 110;
+}
 
 void dfs(int sx, int sy, int dir, int step) {
     if(step == n + 1) {
@@ -38,7 +38,8 @@ void dfs(int sx, int sy, int dir, int step) {
         if(((dir ^ i) & 1) == 0) continue;
         int a = sx + step * dx[i];
         int b = sy + step * dy[i];
-        if(set.count({a, b})) continue;
+        if(invalid(a, b)) continue;
+        if(g[a+110][b+110]) continue;
         // 哈密顿距离，剪枝
         if (abs(a) + abs(b) > sum[20] - sum[step]) continue;
         bool flag = true;
@@ -60,9 +61,9 @@ void dfs(int sx, int sy, int dir, int step) {
         if(flag) {
             // printf("%d,%d to %d,%d\n", sx, sy, a, b);
             path[step] = dirs[i];
-            set.insert({a, b});
+            g[a+110][b+110] = 1;
             dfs(a, b, i, step + 1);
-            set.erase({a, b});
+            g[a+110][b+110] = 0;
         }
     }
 }
@@ -80,6 +81,7 @@ int main(void) {
         for(int i = 0; i < k; i++) {
             int a, b;
             scanf("%d%d", &a, &b);
+            if(invalid(a, b)) continue;
             xy[a].push_back(b), yx[b].push_back(a);
         }
         
@@ -88,14 +90,16 @@ int main(void) {
         int ta[] = {1, 0, 2, 3};
         for(auto i : ta) {
             path[1] = dirs[i];
-            set.insert({dx[i], dy[i]});
+            int a = dx[i], b = dy[i];
+            g[a+110][b+110] = 1;
             dfs(dx[i], dy[i], i, 2);
-            set.erase({dx[i], dy[i]});
+            g[a+110][b+110] = 0;
         }
         printf("Found %d golygon(s).\n\n", tot);
     }
     return 0;
 }
+
 
 // give n, k
 // find a path from (0,0) to (0,0)
