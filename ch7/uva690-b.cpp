@@ -46,7 +46,8 @@ void dfs(int x, int s) {
         return;
     }
     for(int time = s; time <= s + n; time++) {
-        if(time + (9-x) * minstep >= lastpos) return;
+        // 剩下k个任务，由于第一个任务步长是0，所以只需要k-1个步
+        if(time + (10-x-1) * minstep >= lastpos) return;
         if(!check(time)) continue;
         mark(time, x);
         dfs(x+1,time);
@@ -58,7 +59,7 @@ int solve() {
     memset(used, -1, sizeof used);
     lastpos = 9 * n;
     mark(0, 0);
-    for(int i = 0; i < n; i++)
+    for(int i = 0; i <= n; i++)
         if(check(i)) {minstep = i; break;}
     dfs(1,0);
     return lastpos + n;

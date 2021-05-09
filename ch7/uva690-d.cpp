@@ -9,7 +9,7 @@ bool used[maxn * 10 + 10][5];
 char rev[5][maxn + 1];
 int tab[maxn]; // 根据陈锋老师代码，一个时间最多只有一个单元被使用...
 vector<int> offset;
-int n;
+int n, f[11];
 
 bool read_input() {
     if(scanf("%d\n", &n) == EOF || n == 0) return false;
@@ -36,35 +36,34 @@ bool check(int time) {
     return true;
 }
 
-int lastpos;
-int minstep;
-
-void dfs(int x, int s) {
-    if(s >= lastpos) return;
-    if(x == 10) {
-        lastpos = s;
+void dfs(int x, int s, int mx) {
+    if(x == mx) {
+        f[mx] = min(s, f[mx]);
         return;
     }
     for(auto os : offset) {
         int time = s + os;
-        if(time + (9-x) * minstep >= lastpos) return;
+        if(time + f[mx-x] >= f[mx]) return;
         if(!check(time)) continue;
         mark(time, true);
-        dfs(x+1,time);
+        dfs(x+1,time, mx);
         mark(time, false);
     }
 }
 
 int solve() {
-    lastpos = 9 * n;
     mark(0, true);
     offset.clear();
     for(int i = 0; i <= n; i++)
         if(check(i)) offset.push_back(i);
-    minstep = offset[0];
-    dfs(1,0);
+    
+    memset(f, 0, sizeof f);
+    for(int i = 1; i <= 10; i++) {
+        f[i] = i * n;
+        dfs(1, 0, i);
+    }
     mark(0, false);
-    return lastpos + n;
+    return f[10] + n;
 }
 
 int main(void) {
@@ -74,7 +73,5 @@ int main(void) {
     return 0;
 }
 
-// vector版本，310ms... 将min(s+n, lastpos)改成s+n，280ms更快...
-// 1. 如果f(i)使用递归算出来的，那么f(i)是会比i*minstep小的，
-// 这样反而容易导致 time + f(i) >= lastpos的条件没那么容易触发，反而更慢。。。
-// 2. 但是一味的将f(i)变大也是没有根据的，会导致错误的结果
+// 看了陈锋老师的解答。。。究极版本，f[i], 一维task, 稀疏步长
+// 20ms...
