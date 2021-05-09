@@ -15,38 +15,25 @@ bool on(int s, int x) {
 }
 
 // whether the component has cycle
-bool dfs(int x, int pre, int s) {
+bool dfs_fail(int x, int pre, int s) {
     if(vis[x]) return true;
     vis[x] = true;
+    int t = pre == -1 ? 0 : 1;
     for(int i = 0; i < n; i++) {
         if(g[x][i] && !on(s,i) && i != pre) {
-            if(dfs(i, x, s)) return true;
+            if(++t > 2 || dfs_fail(i, x, s)) return true;
         }
     }
     return false;
 }
 
 // check whether each component has cycle and count components
-bool has_cycle(int s) {
+bool valid(int s, int t) {
     memset(vis, false, sizeof vis);
-    comp_cnt = 0;
+    int comp_cnt = 0;
     for(int i = 0; i < n; i++) {
         if(!vis[i] && !on(s, i)) {
-            comp_cnt++;
-            if(dfs(i, -1, s)) return true;
-        }
-    }
-    return false;
-}
-
-// check whether each piece has maximum 2 neighbours
-bool has_max_2_neighbours(int s) {
-    for(int i = 0; i < n; i++) {
-        if(on(s, i)) continue;
-        int cnt = 0;
-        for(int j = 0; j < n; j++) {
-            if(j != i && g[i][j] && !on(s, j)) 
-                if(++cnt > 2) return false;
+            if(t < (++comp_cnt - 1) || dfs_fail(i, -1, s)) return false;
         }
     }
     return true;
@@ -67,9 +54,8 @@ int cal(int s) {
 int solve() {
     int ans = maxn;
     for(int s = 0; s < (1 << n); s++) {
-        if(!has_max_2_neighbours(s) || has_cycle(s)) continue;
         int t = cal(s);
-        if(t >= comp_cnt - 1) ans = min(t, ans);
+        if(valid(s, t)) ans = min(t, ans);
     }
     return ans;
 }
