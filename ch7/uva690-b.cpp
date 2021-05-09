@@ -45,7 +45,7 @@ void dfs(int x, int s) {
         lastpos = s;
         return;
     }
-    for(int time = s; time <= min(s + n, lastpos); time++) {
+    for(int time = s; time <= s + n; time++) {
         if(time + (9-x) * minstep >= lastpos) return;
         if(!check(time)) continue;
         mark(time, x);
@@ -71,4 +71,7 @@ int main(void) {
     return 0;
 }
 
-// 数组版本，310ms...
+// vector版本，310ms... 将min(s+n, lastpos)改成s+n，280ms更快...
+// 1. 如果f(i)使用递归算出来的，那么f(i)是会比i*minstep小的，
+// 这样反而容易导致 time + f(i) >= lastpos的条件没那么容易触发，反而更慢。。。
+// 2. 但是一味的将f(i)变大也是没有根据的，会导致错误的结果
